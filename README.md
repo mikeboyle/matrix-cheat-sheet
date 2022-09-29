@@ -252,15 +252,19 @@ If we are given a matrix and an integer `i`, how do we find the ith element? The
    - easier to code
 
    **Cons**:
-   - requires touching every element (`O(n)` or `O(n^2)`) depending on your point of view)
+   - requires touching every element (`O(m * n)` runtime where `m` = num of rows and `n` = num of columns)
+   - requires extra memory to store the flattened array (`O(m * n)` extra space)
    - interviewers will never let you do this.
 2. Iterate through the matrix and increment a counter each time you touch an element; stop when `counter === i`.
 
-   **Pros:** uses your own code
+   **Pros:**
+   - uses your own code
+   - requires touching only `i` elements, not `m*n` elements
+   - does not use extra space
    
-   **Cons:** as slow as using `flat()` in the worst case
+   **Cons:** as slow as using `flat()` in the worst case. This runtime would still be considered `O(m * n)`
 
-In fact, let's see how you can do this conversion in `O(1)` time and space:
+In fact, you can do this conversion in `O(1)` time and space. Here's how:
 ```js
 const matrix = [
   ['a', 'b', 'c', 'd'],
