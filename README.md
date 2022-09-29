@@ -11,6 +11,7 @@ There are two sections in the doc:
   - Find the number of rows / columns / elements
   - Iterate forwards / backwards / by column
   - Iterate main diagonal / off-diagonal
+  - Iterate upper diagonal / upper triangle
   - Check if a row/col pair is inside the matrix
   - Find the ith element in a matrix
   - Create an empty matrix
@@ -188,6 +189,38 @@ for (let i = 0; i < numRows; i++) {
   console.log(currentElement);
 }
 // logs 3, 5, 7
+```
+
+### Iterate upper diagonal / upper triangle
+`upper diagonal` or (`upper triangle`, `upper triangular`) means the main diagonal of a matrix and all of the cells "above" it. For example, in this matrix, everything in the upper diagonal has a value of `7`:
+```js
+[
+  [7, 7, 7],
+  [0, 7, 7],
+  [0, 0, 7],
+];
+```
+It may seem odd but some problems are more easily solved if you only touch the upper diagonal of the matrix. The pattern for doing this is:
+```js
+const matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+const numRows = matrix.length;
+const numCols = matrix[0].length;
+
+for (let i = 0; i < numRows; i++) {
+  // NOTICE: What do we initialize j to? Why?
+  for (let j = i; j < numCols; j++) {
+    const currentElement = matrix[i][j];
+    // do something with the current element
+    console.log(currentElement);
+  }
+}
+
+// logs 1, 2, 3, 5, 6, 9
 ```
 
 ### Check if a row/column is in bounds (not off the grid)
@@ -415,6 +448,13 @@ const transpose = (matrix) => {
 };
 ```
 
+You might be asked to transpose the matrix `in place`, which means instead of creating a new matrix, you swap the elements at `matrix[i][j]` with `matrix[j][i]` in the original matrix.
+
+The trick to this is knowing:
+1. How to swap elements in an array in JavaScript using a `temp` variable
+2. You only want to iterate over **half** of the matrix; otherwise everything you swapped when you did the first half will just be swapped back, and you'll end up with your original matrix.
+
+Item `2` can be done using one of the patterns in this document. How would you do it? (The answer is in `index.js`.)
 
 ## Matrix jargon / understanding the prompt
 Phrases and terms you'll see in question prompts a lot

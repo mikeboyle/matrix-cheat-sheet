@@ -140,6 +140,21 @@ const printOffDiagonal = (matrix) => {
 }
 printOffDiagonal(squareMatrix);
 
+const printUpperDiagonal = (matrix) => {
+  const numRows = matrix.length;
+  const numCols = matrix[0].length;
+
+  for (let i = 0; i < numRows; i++) {
+    for (let j = i; j < numCols; j++) {
+      const currentElement = matrix[i][j];
+      // do something with the current element
+      console.log(currentElement);
+    }
+  }
+};
+
+console.log(printUpperDiagonal(squareMatrix));
+
 // returns true if matrix[i][j] is a entry in the matrix; false if outside
 const isInBounds = (row, col, matrix) => {
   const numRows = matrix.length; // 3
@@ -259,5 +274,32 @@ const transpose = (matrix) => {
 };
 let t = transpose(rectangularMatrix);
 for (let row of t) {
+  console.log(row);
+}
+
+const inplaceTranspose = (matrix) => {
+  if (matrix.length !== matrix[0].length) {
+    // in place transpose requires a square matrix
+    // return original matrix or throw error, etc.
+    console.log("Error! Matrix must be square");
+    return matrix
+  }
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = i; j < matrix.length; j++) {
+      let temp = matrix[i][j];
+      matrix[i][j] = matrix[j][i];
+      matrix[j][i] = temp;
+    }
+  }
+}
+
+const mat = [
+  [100, 200, 300],
+  [400, 500, 600],
+  [700, 800, 900]
+];
+inplaceTranspose(mat);
+for (let row of mat) {
   console.log(row);
 }
