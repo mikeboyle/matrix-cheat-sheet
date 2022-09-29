@@ -456,6 +456,8 @@ The trick to this is knowing:
 
 Item `2` can be done using one of the patterns in this document. How would you do it? (The answer is in `index.js`.)
 
+Bonus question: Not all matrices can be transposed in place. What kinds of matrices would this **not** work for? Why?
+
 ## Matrix jargon / understanding the prompt
 Phrases and terms you'll see in question prompts a lot
 1. `row` vs `column`: In a 2D array represented like below, the rows are the arrays going left to right (`[1,2,3,4]`, `[5,6,7,8]`, etc.). The columns go from top to bottom (ex: `1, 5, 9` or `2, 6, 10`)
