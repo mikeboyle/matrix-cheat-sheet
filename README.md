@@ -169,26 +169,35 @@ for (let i = 0; i < numRows; i++) {
 ```
 
 ### Iterate off diagonal
-The off diagonal is the other diagonal (see `Matrix jargon` for more). This assumes the matrix is rectangular or square (not ragged).
+The off diagonal is the other diagonal (see `Matrix jargon` for more). This assumes the matrix is `n x n` square (not rectangular or ragged).
+Fun fact! For every entry on the off diagonal, `column index + row index = n - 1`
+
+In the example 4 x 4 matrix:
+
+- `n = 4`
+- We start at row index `0`, col `3`. Notice: `row + col = 0 + 3 = 3` and `3 = n - 1`
+- Next we do row index `1`, col `2`. Notice that the row and col indexes add up to `n - 1`
+- Next: row 2, col 1
+- row 3, col 0
+
 ```js
 const matrix = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
+  [1, 2,  3,  4],
+  [5, 6,  7,  8],
+  [9, 10, 11, 12],
+  [13,14, 15, 16],
 ];
-const numRows = matrix.length;
-const numCols = matrix[0].length;
+const n = matrix.length;
 
-for (let i = 0; i < numRows; i++) {
-  // NOTICE: convince yourself why matrix[i][numCols - 1 - i] works.
-  // Why isn't it matrix[i][numCols - i]? Why do we subtract the 1?
-  // Why do we need to know numCols to do the off diagonal, but not the main diagonal?
-  // ALSO NOTICE: we don't need an inner loop
-  const currentElement = matrix[i][numCols - 1 - i];
+for (let row = 0; row < n; row++) {
+  // row + col = n - 1
+  // col = n - 1 - row (thanks, algebra!)
+  const col = n - 1 - row
+  const currentElement = matrix[row][col];
   // do something with the current element
   console.log(currentElement);
 }
-// logs 3, 5, 7
+// logs 4, 7, 10, 13
 ```
 
 ### Iterate upper diagonal / upper triangle
